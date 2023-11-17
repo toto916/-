@@ -1,0 +1,11 @@
+#jieba分词后去除停用词
+def seg_word(sentence):
+	seg_list = jieba.cut(sentence)
+	seg_result = []
+	for i in seg_list:
+		seg_result.append(i)
+	stopwords = set()
+	with open('stopwords.txt','r') as fr:
+		for i in fr:
+			stopwords.add(i.strip())
+	return list(filter(lambda x :x not in stopwords,seg_result))
